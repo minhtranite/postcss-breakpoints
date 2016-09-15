@@ -1,0 +1,35 @@
+{
+  "name": "postcss-breakpoints",
+  "version": "1.0.0",
+  "description": "PostCSS plugin Breakpoint viewport sizes and media queries.",
+  "keywords": [
+    "postcss",
+    "css",
+    "postcss-plugin",
+    "postcss-breakpoints",
+    "breakpoints",
+    "viewport",
+    "media queries"
+  ],
+  "author": "Minh Tran <vn38minhtran@gmail.com>",
+  "license": "MIT",
+  "repository": "vn38minhtran/postcss-breakpoints",
+  "bugs": {
+    "url": "https://github.com/vn38minhtran/postcss-breakpoints/issues"
+  },
+  "homepage": "https://github.com/vn38minhtran/postcss-breakpoints",
+  "dependencies": {
+    "postcss": "^5.2.0"
+  },
+  "devDependencies": {
+    "ava": "^0.16.0",
+    "eslint": "^3.4.0",
+    "eslint-config-postcss": "^2.0.2"
+  },
+  "scripts": {
+    "test": "ava && eslint *.js"
+  },
+  "eslintConfig": {
+    "extends": "eslint-config-postcss/es5"
+  }
+}
