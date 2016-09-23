@@ -1,0 +1,21 @@
+body {
+    color: white;
+}
+
+@breakpoint-between xs sm {
+    body {
+        background: red;
+    }
+}
+
+@breakpoint-between sm md {
+    body {
+        background: orange;
+    }
+}
+
+@breakpoint-between md lg {
+    body {
+        background: yellow;
+    }
+}

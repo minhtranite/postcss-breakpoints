@@ -1,0 +1,33 @@
+body {
+    color: white;
+}
+
+@media (min-width: 0) {
+    body {
+        background: red;
+    }
+}
+
+@media (min-width: 544px) {
+    body {
+        background: orange;
+    }
+}
+
+@media (min-width: 768px) {
+    body {
+        background: yellow;
+    }
+}
+
+@media (min-width: 992px) {
+    body {
+        background: green;
+    }
+}
+
+@media (min-width: 1200px) {
+    body {
+        background: blue;
+    }
+}

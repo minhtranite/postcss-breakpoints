@@ -1,0 +1,23 @@
+@pcss-breakpoint-up bp1 {
+    body {
+        background: red;
+    }
+}
+
+@pcss-breakpoint-down bp2 {
+    body {
+        background: orange;
+    }
+}
+
+@pcss-breakpoint-only bp3 {
+    body {
+        background: yellow;
+    }
+}
+
+@pcss-breakpoint-between bp1 bp2 {
+    body {
+        background: green;
+    }
+}

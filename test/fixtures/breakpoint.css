@@ -1,0 +1,33 @@
+body {
+    color: white;
+}
+
+@breakpoint 0 543px {
+    body {
+        background: red;
+    }
+}
+
+@breakpoint 544px 767px {
+    body {
+        background: orange;
+    }
+}
+
+@breakpoint 768px 991px {
+    body {
+        background: yellow;
+    }
+}
+
+@breakpoint 992px 1199px {
+    body {
+        background: green;
+    }
+}
+
+@breakpoint 1200px {
+    body {
+        background: blue;
+    }
+}

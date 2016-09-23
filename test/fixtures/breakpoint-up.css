@@ -1,0 +1,33 @@
+body {
+    color: white;
+}
+
+@breakpoint-up xs {
+    body {
+        background: red;
+    }
+}
+
+@breakpoint-up sm {
+    body {
+        background: orange;
+    }
+}
+
+@breakpoint-up md {
+    body {
+        background: yellow;
+    }
+}
+
+@breakpoint-up lg {
+    body {
+        background: green;
+    }
+}
+
+@breakpoint-up xl {
+    body {
+        background: blue;
+    }
+}

@@ -1,0 +1,27 @@
+body {
+    color: white;
+}
+
+@breakpoint-down xs {
+    body {
+        background: red;
+    }
+}
+
+@breakpoint-down sm {
+    body {
+        background: orange;
+    }
+}
+
+@breakpoint-down md {
+    body {
+        background: yellow;
+    }
+}
+
+@breakpoint-down lg {
+    body {
+        background: green;
+    }
+}
