@@ -11,13 +11,13 @@
     "viewport",
     "media queries"
   ],
-  "author": "Minh Tran <vn38minhtran@gmail.com>",
+  "author": "Minh Tran <minhtranite@gmail.com>",
   "license": "MIT",
-  "repository": "vn38minhtran/postcss-breakpoints",
+  "repository": "minhtranite/postcss-breakpoints",
   "bugs": {
-    "url": "https://github.com/vn38minhtran/postcss-breakpoints/issues"
+    "url": "https://github.com/minhtranite/postcss-breakpoints/issues"
   },
-  "homepage": "https://github.com/vn38minhtran/postcss-breakpoints",
+  "homepage": "https://github.com/minhtranite/postcss-breakpoints",
   "dependencies": {
     "postcss": "^5.2.0"
   },
