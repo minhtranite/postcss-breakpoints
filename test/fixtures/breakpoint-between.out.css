@@ -3,18 +3,21 @@ body {
 }
 
 @media (min-width: 0) and (max-width: 767px) {
+
     body {
         background: red;
     }
 }
 
 @media (min-width: 544px) and (max-width: 991px) {
+
     body {
         background: orange;
     }
 }
 
 @media (min-width: 768px) and (max-width: 1199px) {
+
     body {
         background: yellow;
     }

@@ -1,4 +1,4 @@
-var postcss = require('postcss');
+const postcss = require('postcss');
 
 /**
  * Create rule name
@@ -28,9 +28,9 @@ function validValue(value) {
  * @returns {boolean}
  */
 function validBreakpoint(breakpoint, breakpoints, requiredMax) {
-    var keys = Object.keys(breakpoints);
-    var index = keys.indexOf(breakpoint);
-    var match = breakpoints[breakpoint];
+    const keys = Object.keys(breakpoints);
+    const index = keys.indexOf(breakpoint);
+    const match = breakpoints[breakpoint];
     if (index === -1 || !match) {
         return false;
     }
@@ -39,7 +39,7 @@ function validBreakpoint(breakpoint, breakpoints, requiredMax) {
 }
 
 function throwRuleParamsError(rule, reasons) {
-    var message = 'Invalid argument of rule "@' + rule.name + '"';
+    let message = 'Invalid argument of rule "@' + rule.name + '"';
     if (reasons) {
         message += ': ' + reasons;
     }
@@ -52,14 +52,14 @@ function throwRuleParamsError(rule, reasons) {
  * Create @media rule
  * @param min
  * @param max
- * @param nodes
+ * @param rule
  * @returns {AtRule}
  */
-function mediaRule(min, max, nodes) {
+function mediaRule(min, max, rule) {
     if (!validValue(min) && !validValue(max)) {
         throw new Error('Invalid argument');
     }
-    var breakpoints = [];
+    const breakpoints = [];
     if (validValue(min)) {
         breakpoints.push('(min-width: ' + min + ')');
     }
@@ -69,7 +69,9 @@ function mediaRule(min, max, nodes) {
     return postcss.atRule({
         name: 'media',
         params: breakpoints.join(' and '),
-        nodes: nodes
+        nodes: rule.nodes,
+        parent: rule.parent,
+        raws: rule.raws
     });
 }
 
@@ -81,8 +83,8 @@ function breakpointRule(rule) {
     if (!rule.params) {
         throwRuleParamsError(rule, 'empty argument');
     }
-    var args = rule.params.split(' ');
-    rule.replaceWith(mediaRule(args[0], args[1], rule.nodes));
+    const args = rule.params.split(' ');
+    rule.replaceWith(mediaRule(args[0], args[1], rule));
 }
 
 /**
@@ -100,8 +102,8 @@ function breakpointUpRule(rule, breakpoints) {
             'breakpoint "' + rule.params + '" is invalid'
         );
     }
-    var args = breakpoints[rule.params].split(' ');
-    rule.replaceWith(mediaRule(args[0], null, rule.nodes));
+    const args = breakpoints[rule.params].split(' ');
+    rule.replaceWith(mediaRule(args[0], null, rule));
 }
 
 /**
@@ -119,8 +121,8 @@ function breakpointDownRule(rule, breakpoints) {
             'breakpoint "' + rule.params + '" is invalid'
         );
     }
-    var args = breakpoints[rule.params].split(' ');
-    rule.replaceWith(mediaRule(null, args[1], rule.nodes));
+    const args = breakpoints[rule.params].split(' ');
+    rule.replaceWith(mediaRule(null, args[1], rule));
 }
 
 /**
@@ -138,8 +140,8 @@ function breakpointOnlyRule(rule, breakpoints) {
             'breakpoint "' + rule.params + '" is invalid'
         );
     }
-    var args = breakpoints[rule.params].split(' ');
-    rule.replaceWith(mediaRule(args[0], args[1], rule.nodes));
+    const args = breakpoints[rule.params].split(' ');
+    rule.replaceWith(mediaRule(args[0], args[1], rule));
 }
 
 /**
@@ -151,7 +153,7 @@ function breakpointBetweenRule(rule, breakpoints) {
     if (!rule.params) {
         throwRuleParamsError(rule, 'empty argument');
     }
-    var names = rule.params.split(' ');
+    const names = rule.params.split(' ');
     if (names.length !== 2) {
         throwRuleParamsError(rule, 'invalid argument');
     }
@@ -161,13 +163,13 @@ function breakpointBetweenRule(rule, breakpoints) {
     if (!validBreakpoint(names[1], breakpoints, true)) {
         throwRuleParamsError(rule, 'breakpoint "' + names[1] + '" is invalid');
     }
-    var argFirst = breakpoints[names[0]].split(' ');
-    var argSecond = breakpoints[names[1]].split(' ');
-    rule.replaceWith(mediaRule(argFirst[0], argSecond[1], rule.nodes));
+    const argFirst = breakpoints[names[0]].split(' ');
+    const argSecond = breakpoints[names[1]].split(' ');
+    rule.replaceWith(mediaRule(argFirst[0], argSecond[1], rule));
 }
 
 module.exports = postcss.plugin('postcss-breakpoints', function (opts) {
-    var breakpoints = {
+    const breakpoints = {
         xs: '0 543px',
         sm: '544px 767px',
         md: '768px 991px',

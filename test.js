@@ -1,6 +1,7 @@
 import postcss from 'postcss';
 import test from 'ava';
 import fs from 'fs';
+import autoprefixer from 'autoprefixer';
 
 import plugin from './';
 
@@ -9,9 +10,9 @@ function read(path) {
 }
 
 function run(t, name, opts = {}) {
-    var input = read('test/fixtures/' + name + '.css');
-    var output = read('test/fixtures/' + name + '.out.css');
-    return postcss([plugin(opts)])
+    const input = read('test/fixtures/' + name + '.css');
+    const output = read('test/fixtures/' + name + '.out.css');
+    return postcss([plugin(opts), autoprefixer()])
         .process(input)
         .then(result => {
             t.deepEqual(result.css, output);
@@ -50,4 +51,6 @@ test('custom', t => {
     });
 });
 
-
+test('with autoprefixer', t => {
+    return run(t, 'autoprefixer', {});
+});
